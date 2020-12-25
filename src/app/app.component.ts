@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ng-app';
 
-  alerted(){
+  alerted(v){
     alert(this.title + "is working")
   }
 }
