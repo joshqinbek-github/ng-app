@@ -13,11 +13,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
+import {MatTableModule} from '@angular/material/table';
+import { AllComponent } from './all/all.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UpcomingComponent } from './upcoming/upcoming.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    AllComponent,
+    UpcomingComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +36,13 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    FormsModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
