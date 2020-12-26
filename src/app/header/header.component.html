@@ -1,13 +1,14 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container [hasBackdrop]="true" class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" 
-  fixedInViewport
+      fixedInViewport
       [attr.role]="'navigation'"
       [mode]="'side'"
-      [opened]="false">
+      [opened]="false" 
+      >
     <mat-toolbar>JayBarber</mat-toolbar>
     <mat-nav-list>
-    <a mat-list-item routerLink="/all">Barcha</a>
-      <a mat-list-item routerLink="/upcoming">Eng yaqinlar</a>
+    <a mat-list-item routerLink="/" (click)="drawer.toggle()">Barcha</a>
+      <a mat-list-item routerLink="/upcoming" (click)="drawer.toggle()">Eng yaqinlar</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

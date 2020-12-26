@@ -22,13 +22,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpcomingComponent } from './upcoming/upcoming.component';
-import {ClipboardModule} from '@angular/cdk/clipboard'; 
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import { UsersComponent } from './all/users/users.component';
+import { AddUserComponent } from './add-user/add-user.component'; 
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AllComponent,
-    UpcomingComponent
+    UpcomingComponent,
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatTableModule,
     MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
