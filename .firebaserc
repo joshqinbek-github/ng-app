@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jaybro-10b3c": {
+      "hosting": {
+        "ng-app": [
+          "jaybro-10b3c"
+        ]
+      }
+    }
+  }
+}

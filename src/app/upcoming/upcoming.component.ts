@@ -1,24 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { UserData } from '../shared/user.model';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
 
 @Component({
   selector: 'app-upcoming',
@@ -27,10 +14,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UpcomingComponent implements OnInit {
 
-  constructor() { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource;
+  dataSub: Subscription;
+  date = new Date();
+  
+  constructor(db: AngularFireDatabase) {
+     this.dataSub = db.list('users').valueChanges()
+     .subscribe((users: UserData[]) =>{
+      this.dataSource = users;
+    });
+  }
   
   ngOnInit(): void {
 

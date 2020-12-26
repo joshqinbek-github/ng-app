@@ -1,36 +1,40 @@
-<div class="ct">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<br />
+<br />
+<table class="table col-11 mr-auto ml-auto table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of dataSource; let i = index">
+      <ng-container
+        *ngIf="
+          user.date.month == date.getMonth() &&
+          ( 
+            (user.date.day + 3 >= date.getDate() && user.date.day <= date.getDate() + 4) ||
+            user.date.day == date.getDate()
+          )
+        "
+      >
+        <th scope="row">{{ i }}</th>
+        <td>{{ user.name }}</td>
+        <td>
+          <b class="text-warning">
+            {{ user.date.day }}
+            {{ user.date.month }}         
+        </b>
+        {{ user.date.year }}
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      
-      
-</div>
+        </td>
+        <td>{{ user.phone }}
+          <button mat-raised-button [cdkCopyToClipboard]="user.phone">Copy</button>
+          
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
