@@ -26,6 +26,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import { UsersComponent } from './all/users/users.component';
 import { AddUserComponent } from './add-user/add-user.component'; 
 import {MatSelectModule} from '@angular/material/select';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
     AllComponent,
     UpcomingComponent,
     UsersComponent,
-    AddUserComponent
+    AddUserComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -55,9 +57,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

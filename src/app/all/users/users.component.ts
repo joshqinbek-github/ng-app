@@ -8,12 +8,6 @@ import { UserData } from '../../shared/user.model';
 
 
 
-/** Constants used to fill up our data base. */
-
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',

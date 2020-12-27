@@ -3,24 +3,22 @@
 <table class="table col-11 mr-auto ml-auto table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Date</th>
       <th scope="col">Phone</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of dataSource; let i = index">
+    <tr *ngFor="let user of dataSource">
       <ng-container
         *ngIf="
-          user.date.month == date.getMonth() &&
+          user.date.month == (date.getMonth()+1) &&
           ( 
             (user.date.day + 3 >= date.getDate() && user.date.day <= date.getDate() + 4) ||
             user.date.day == date.getDate()
           )
         "
       >
-        <th scope="row">{{ i }}</th>
         <td>{{ user.name }}</td>
         <td>
           <b class="text-warning">
