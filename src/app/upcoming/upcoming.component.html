@@ -12,24 +12,27 @@
     <tr *ngFor="let user of dataSource">
       <ng-container
         *ngIf="
-          user.date.month == (date.getMonth()+1) &&
+          (+user.date[1] == date.getMonth()+1) &&
           ( 
-            (user.date.day + 3 >= date.getDate() && user.date.day <= date.getDate() + 4) ||
-            user.date.day == date.getDate()
+            (+user.date[0] + 3 >= date.getDate() && +user.date[0] <= date.getDate() + 4) ||
+            +user.date[0] == date.getDate()
           )
         "
       >
         <td>{{ user.name }}</td>
         <td>
           <b class="text-warning">
-            {{ user.date.day }}
-            {{ user.date.month }}         
+            {{ user.date[0] }}
+            {{ user.date[1] }}         
         </b>
-        {{ user.date.year }}
+        {{ user.date[2] }}
 
         </td>
         <td>{{ user.phone }}
-          <button mat-raised-button [cdkCopyToClipboard]="user.phone">Copy</button>
+          <button class="mr-1 ml-1" mat-raised-button [cdkCopyToClipboard]="user.phone">Copy</button>
+          <a class="mr-1 ml-1" mat-raised-button [href]="'tel:'+user.phone">
+            <mat-icon>phone</mat-icon>
+          </a>
           
         </td>
       </ng-container>

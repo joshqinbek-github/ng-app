@@ -9,6 +9,8 @@ const routes: Routes = [
   {path: '', component: AllComponent,  children: [
     {path: '', pathMatch: "full", component: UsersComponent},
     {path: 'addClient', component: AddUserComponent},
+    {path: 'edit/:id', component: AddUserComponent},
+
 
 
   ]},

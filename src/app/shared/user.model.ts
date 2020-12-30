@@ -1,5 +1,10 @@
 export interface UserData {
+    id?: number;
     name: string;
-    date: any;
+    date: {
+      day: number,
+      month: number,
+      year: number
+    };
     phone: string;
   }

@@ -1,17 +1,76 @@
-<div class="container d-flex flex-column mt-3 p-md-3">
+  <ng-container *ngIf="!isEdit">
+    <div class="container d-flex flex-column mt-3 p-md-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Name</mat-label>
+        <input matInput #name minlength="3" required placeholder="Ism...">
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Kun</mat-label>
+        <input matInput #day maxlength="2" required placeholder="Kun...">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Oy</mat-label>
+        <mat-select #month required>
+          <mat-option value="1">January</mat-option>
+          <mat-option value="2">February</mat-option>
+          <mat-option value="3">March</mat-option>
+          <mat-option value="4">April</mat-option>
+          <mat-option value="5">May</mat-option>
+          <mat-option value="6">June</mat-option>
+          <mat-option value="7">July</mat-option>
+          <mat-option value="8">August</mat-option>
+          <mat-option value="9">September</mat-option>
+          <mat-option value="10">Octoper</mat-option>
+          <mat-option value="11">November</mat-option>
+          <mat-option value="12">December</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Yil</mat-label>
+        <input matInput #year maxlength="4" max="2022" placeholder="Yil...">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <input matInput #phone type="phone" maxLength="13" value="+998 9" placeholder="+998991234567">
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+    
+    </div>
+    
+    <div class="container">
+        <button 
+        mat-raised-button 
+        *ngIf="name.value.length > 3 && day.value != null && month.value != null"
+        class="float-right" 
+        
+        (click)="submit(name.value, day.value, month.value, year.value, phone.value)">Add Client</button>
+    </div>
+  </ng-container>
+
+
+
+  
+<!-- -------- edit mode ---------  -->
+
+<ng-container *ngIf="isEdit && user">
+  <div class="container d-flex flex-column mt-3 p-md-3">
     <mat-form-field appearance="fill">
       <mat-label>Enter Name</mat-label>
-      <input matInput #name minlength="3" required placeholder="Ism...">
+      <input matInput #editName [value]="user.name" minlength="3" required placeholder="Ism...">
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Kun</mat-label>
-      <input matInput #day maxlength="2" required placeholder="Kun...">
+      <input matInput #editDay maxlength="2" [value]="user.date[0]" required placeholder="Kun...">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Oy</mat-label>
-      <mat-select #month required>
+      <mat-select #editMonth [value]="user.date[1]+''" required>
         <mat-option value="1">January</mat-option>
         <mat-option value="2">February</mat-option>
         <mat-option value="3">March</mat-option>
@@ -29,12 +88,12 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Yil</mat-label>
-      <input matInput #year maxlength="4" max="2022" placeholder="Yil...">
+      <input matInput #editYear [value]="user.date[2]" maxlength="4" max="2022" placeholder="Yil...">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Phone number</mat-label>
-      <input matInput #phone  value="+998 9*" placeholder="+998991234567">
+      <input matInput #editPhone type="phone" [value]="user.phone" maxLength="16"  placeholder="+998991234567">
       <mat-icon matSuffix>phone</mat-icon>
     </mat-form-field>
   
@@ -43,7 +102,9 @@
   <div class="container">
       <button 
       mat-raised-button 
-      *ngIf="name.value.length > 3 && day.value != null && month.value != null"
-      class="float-right" 
-      (click)="submit(name.value, day.value, month.value, year.value, phone.value)">Add Client</button>
+      class="float-right"       
+      (click)="edit(user.phone, editName.value, editDay.value, editMonth.value, editYear.value, editPhone.value)">
+        Edit 
+    </button>
   </div>
+</ng-container>

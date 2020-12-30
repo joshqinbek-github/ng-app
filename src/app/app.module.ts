@@ -27,6 +27,9 @@ import { UsersComponent } from './all/users/users.component';
 import { AddUserComponent } from './add-user/add-user.component'; 
 import {MatSelectModule} from '@angular/material/select';
 import { DataService } from './data.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -58,6 +61,8 @@ import { DataService } from './data.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatProgressBarModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
